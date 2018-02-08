@@ -16,3 +16,5 @@
 //});
 
 Route::get('/', 'IndexController@index');
+Route::get('/blog_details', 'IndexController@blog_details');
+Route::get('/contact', 'IndexController@contact');

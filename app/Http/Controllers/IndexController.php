@@ -13,7 +13,20 @@ class indexController extends Controller {
      */
     public function index() {
         //
-        return view('index');
+        $home_content = view('pages.home_content');
+        return view('index')->with('main_content',$home_content);
+    }
+    
+    public function blog_details() {
+        //
+        $blog_details = view('pages.blog_details');
+        return view('index')->with('main_content',$blog_details);
+    }
+    
+    public function contact() {
+        //
+        $home_content = view('pages.home_content');
+        return view('index')->with('main_content',$home_content);
     }
 
     /**

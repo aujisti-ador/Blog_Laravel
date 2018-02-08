@@ -10,7 +10,7 @@
         <h3><a href="single.html">MORBI IN SEM QUIS DUI</a></h3>
         <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
         <img src="{{asset('public/front_end_asset/images/c1.jpg')}}" alt=""/>
-        <a class="bttn" href="single.html">MORE</a>
+        <a class="bttn" href="{{URL::to ('/blog_details')}}">MORE</a>
     </div>
 </div>
 @endsection
