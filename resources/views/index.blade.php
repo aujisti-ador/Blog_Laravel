@@ -121,6 +121,10 @@ jQuery(document).ready(function ($) {
                         </div>				 
                     </div>
 
+                    <?php 
+                        
+                        if ($sidebar==1) {
+                    ?>
                     <div class="col-md-4 content-main-right">
                         <div class="search">
                             <h3>SEARCH HERE</h3>
@@ -142,6 +146,7 @@ jQuery(document).ready(function ($) {
                             <li><a href="#">May 2014</a></li>
                         </div>
                     </div>
+                        <?php } ?>
                     <div class="clearfix"></div>
                 </div>
             </div>

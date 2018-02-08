@@ -12,21 +12,25 @@ class indexController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+
+        $sidebar = 1;
         $home_content = view('pages.home_content');
-        return view('index')->with('main_content',$home_content);
+        return view('index')->with('main_content', $home_content)
+                        ->with('sidebar', $sidebar);
     }
-    
+
     public function blog_details() {
-        //
+        
+        $sidebar = 1;
         $blog_details = view('pages.blog_details');
-        return view('index')->with('main_content',$blog_details);
+        return view('index')->with('main_content', $blog_details)
+                        ->with('sidebar', $sidebar);
     }
-    
+
     public function contact() {
         //
         $home_content = view('pages.home_content');
-        return view('index')->with('main_content',$home_content);
+        return view('index')->with('main_content', $home_content);
     }
 
     /**
