@@ -13,24 +13,32 @@ class indexController extends Controller {
      */
     public function index() {
 
+        $banner_link=1;
         $sidebar = 1;
         $home_content = view('pages.home_content');
         return view('index')->with('main_content', $home_content)
-                        ->with('sidebar', $sidebar);
+                        ->with('sidebar', $sidebar)
+                        ->with ('banner_link',$banner_link);
     }
 
     public function blog_details() {
-        
+
+        $banner_link = 1;
         $sidebar = 1;
         $blog_details = view('pages.blog_details');
         return view('index')->with('main_content', $blog_details)
-                        ->with('sidebar', $sidebar);
+                        ->with('sidebar', $sidebar)
+                        ->with('banner_link',$banner_link);
     }
 
     public function contact() {
-        //
-        $home_content = view('pages.home_content');
-        return view('index')->with('main_content', $home_content);
+
+        $banner_link=0;
+        $sidebar = 0;
+        $contact = view('pages.contact');
+        return view('index')->with('main_content', $contact)
+                        ->with('sidebar', $sidebar)
+                        ->with ('banner_link',$banner_link);
     }
 
     /**
