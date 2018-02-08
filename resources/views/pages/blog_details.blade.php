@@ -1,8 +1,8 @@
 @extend('index')
 @section('main_content')
 
-<div class="content-grids">
-    <div class="col-md-8 content-main">
+<!--<div class="content-grids">
+    <div class="col-md-8 content-main">-->
         <div class="content-grid">
             <div class="content-grid-head">
                 <h3>POST OF THE DAY</h3>
@@ -53,6 +53,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+<!--    </div>
+</div>-->
 @endsection
