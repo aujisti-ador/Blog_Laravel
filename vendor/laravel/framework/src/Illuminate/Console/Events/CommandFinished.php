@@ -26,7 +26,7 @@ class CommandFinished
      *
      * @var \Symfony\Component\Console\Output\OutputInterface|null
      */
-    public $output;
+    protected $output;
 
     /**
      * The command exit code.
@@ -42,7 +42,6 @@ class CommandFinished
      * @param  \Symfony\Component\Console\Input\InputInterface  $input
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @param  int  $exitCode
-     * @return void
      */
     public function __construct($command, InputInterface $input, OutputInterface $output, $exitCode)
     {

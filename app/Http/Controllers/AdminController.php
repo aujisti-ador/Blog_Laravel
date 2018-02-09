@@ -15,6 +15,11 @@ class AdminController extends Controller
     {
         return view('admin.admin_login');
     }
+    
+    public function admin_login_check()
+    {
+        echo "admin login done!";
+    }
 
     /**
      * Show the form for creating a new resource.

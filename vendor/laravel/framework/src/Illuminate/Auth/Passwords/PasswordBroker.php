@@ -107,7 +107,7 @@ class PasswordBroker implements PasswordBrokerContract
      * Validate a password reset for the given credentials.
      *
      * @param  array  $credentials
-     * @return \Illuminate\Contracts\Auth\CanResetPassword|string
+     * @return \Illuminate\Contracts\Auth\CanResetPassword
      */
     protected function validateReset(array $credentials)
     {
@@ -179,7 +179,7 @@ class PasswordBroker implements PasswordBrokerContract
      * Get the user for the given credentials.
      *
      * @param  array  $credentials
-     * @return \Illuminate\Contracts\Auth\CanResetPassword|null
+     * @return \Illuminate\Contracts\Auth\CanResetPassword
      *
      * @throws \UnexpectedValueException
      */

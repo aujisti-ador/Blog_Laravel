@@ -6,9 +6,8 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Collection;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Illuminate\Contracts\Notifications\Factory as NotificationFactory;
-use Illuminate\Contracts\Notifications\Dispatcher as NotificationDispatcher;
 
-class NotificationFake implements NotificationFactory, NotificationDispatcher
+class NotificationFake implements NotificationFactory
 {
     /**
      * All of the notifications that have been sent.
@@ -179,7 +178,6 @@ class NotificationFake implements NotificationFactory, NotificationDispatcher
             $this->notifications[get_class($notifiable)][$notifiable->getKey()][get_class($notification)][] = [
                 'notification' => $notification,
                 'channels' => $notification->via($notifiable),
-                'notifiable' => $notifiable,
             ];
         }
     }

@@ -6,15 +6,16 @@ use ArrayAccess;
 use JsonSerializable;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
+use Illuminate\Http\Resources\MergeValue;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Resources\DelegatesToResource;
-use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 
 class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutable
 {
-    use ConditionallyLoadsAttributes, DelegatesToResource;
+    use DelegatesToResource;
 
     /**
      * The resource instance.
@@ -33,7 +34,7 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
     /**
      * The additional meta data that should be added to the resource response.
      *
-     * Added during response construction by the developer.
+     * Added during response constuction by the developer.
      *
      * @var array
      */
@@ -72,11 +73,25 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
      * Create new anonymous resource collection.
      *
      * @param  mixed  $resource
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return mixed
      */
     public static function collection($resource)
     {
-        return new AnonymousResourceCollection($resource, get_called_class());
+        return new class($resource, get_called_class()) extends ResourceCollection {
+            /**
+             * Create a new anonymous resource collection.
+             *
+             * @param  mixed  $resource
+             * @param  string  $collects
+             * @return void
+             */
+            public function __construct($resource, $collects)
+            {
+                $this->collects = $collects;
+
+                parent::__construct($resource);
+            }
+        };
     }
 
     /**
@@ -103,9 +118,64 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
     }
 
     /**
+     * Filter the given data, removing any optional values.
+     *
+     * @param  array  $data
+     * @return array
+     */
+    protected function filter($data)
+    {
+        $index = -1;
+
+        foreach ($data as $key => $value) {
+            $index++;
+
+            if (is_array($value)) {
+                $data[$key] = $this->filter($value);
+
+                continue;
+            }
+
+            if (is_numeric($key) && $value instanceof MergeValue) {
+                return $this->merge($data, $index, $this->filter($value->data));
+            }
+
+            if ($value instanceof MissingValue ||
+                ($value instanceof self &&
+                $value->resource instanceof MissingValue)) {
+                unset($data[$key]);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Merge the given data in at the given index.
+     *
+     * @param  array  $data
+     * @param  int  $index
+     * @param  array  $merge
+     * @return array
+     */
+    protected function merge($data, $index, $merge)
+    {
+        if (array_values($data) === $data) {
+            return array_merge(
+                array_merge(array_slice($data, 0, $index, true), $merge),
+                $this->filter(array_slice($data, $index + 1, null, true))
+            );
+        } else {
+            return array_slice($data, 0, $index, true) +
+                    $merge +
+                    $this->filter(array_slice($data, $index + 1, null, true));
+        }
+    }
+
+    /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request
      * @return array
      */
     public function toArray($request)
@@ -116,7 +186,7 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
     /**
      * Get any additional data that should be returned with the resource array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request  $request
      * @return array
      */
     public function with($request)
@@ -141,12 +211,103 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
      * Customize the response for a request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Http\JsonResponse  $response
+     * @param  \Illuminate\Http\Response  $response
      * @return void
      */
     public function withResponse($request, $response)
     {
         //
+    }
+
+    /**
+     * Retrieve a value based on a given condition.
+     *
+     * @param  bool  $condition
+     * @param  mixed  $value
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function when($condition, $value, $default = null)
+    {
+        if ($condition) {
+            return value($value);
+        }
+
+        return func_num_args() === 3 ? value($default) : new MissingValue;
+    }
+
+    /**
+     * Merge a value based on a given condition.
+     *
+     * @param  bool  $condition
+     * @param  mixed  $value
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function mergeWhen($condition, $value)
+    {
+        return $condition ? new MergeValue(value($value)) : new MissingValue;
+    }
+
+    /**
+     * Merge the given attributes.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Http\Resources\MergeValue
+     */
+    protected function attributes($attributes)
+    {
+        return new MergeValue(
+            array_only($this->resource->toArray(), $attributes)
+        );
+    }
+
+    /**
+     * Retrieve a relationship if it has been loaded.
+     *
+     * @param  string  $relationship
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenLoaded($relationship)
+    {
+        if ($this->resource->relationLoaded($relationship)) {
+            return $this->resource->{$relationship};
+        }
+
+        return new MissingValue;
+    }
+
+    /**
+     * Execute a callback if the given pivot table has been loaded.
+     *
+     * @param  string  $table
+     * @param  mixed  $value
+     * @param  mixed  $default
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenPivotLoaded($table, $value, $default = null)
+    {
+        if (func_num_args() === 2) {
+            $default = new MissingValue;
+        }
+
+        return $this->when(
+            $this->pivot && ($this->pivot instanceof $table || $this->pivot->getTable() === $table),
+            ...[$value, $default]
+        );
+    }
+
+    /**
+     * Transform the given value if it is present.
+     *
+     * @param  mixed  $value
+     * @param  callable  $callback
+     * @param  mixed  $default
+     * @return mixed
+     */
+    protected function transform($value, callable $callback, $default = null)
+    {
+        return transform(
+            $value, $callback, func_num_args() === 3 ? $default : new MissingValue
+        );
     }
 
     /**
@@ -163,6 +324,7 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
     /**
      * Disable wrapping of the outer-most resource array.
      *
+     * @param  string  $value
      * @return void
      */
     public static function withoutWrapping()
@@ -174,7 +336,7 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
      * Transform the resource into an HTTP response.
      *
      * @param  \Illuminate\Http\Request|null  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function response($request = null)
     {
@@ -187,7 +349,7 @@ class Resource implements ArrayAccess, JsonSerializable, Responsable, UrlRoutabl
      * Create an HTTP response that represents the object.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function toResponse($request)
     {

@@ -4,7 +4,6 @@ namespace Illuminate\Queue;
 
 use Exception;
 use Throwable;
-use Illuminate\Support\Carbon;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\DetectsLostConnections;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -39,7 +38,7 @@ class Worker
     /**
      * The exception handler instance.
      *
-     * @var \Illuminate\Contracts\Debug\ExceptionHandler
+     * @var \Illuminate\Foundation\Exceptions\Handler
      */
     protected $exceptions;
 
@@ -306,7 +305,7 @@ class Worker
     {
         try {
             // First we will raise the before job event and determine if the job has already ran
-            // over its maximum attempt limits, which could primarily happen when this job is
+            // over the its maximum attempt limit, which could primarily happen if the job is
             // continually timing out and not actually throwing any exceptions from itself.
             $this->raiseBeforeJobEvent($connectionName, $job);
 
@@ -383,7 +382,7 @@ class Worker
 
         $timeoutAt = $job->timeoutAt();
 
-        if ($timeoutAt && Carbon::now()->getTimestamp() <= $timeoutAt) {
+        if ($timeoutAt && now()->getTimestamp() <= $timeoutAt) {
             return;
         }
 
@@ -392,7 +391,7 @@ class Worker
         }
 
         $this->failJob($connectionName, $job, $e = new MaxAttemptsExceededException(
-            $job->resolveName().' has been attempted too many times or run too long. The job may have previously timed out.'
+            'A queued job has been attempted too many times or run too long. The job may have previously timed out.'
         ));
 
         throw $e;
@@ -411,7 +410,7 @@ class Worker
     {
         $maxTries = ! is_null($job->maxTries()) ? $job->maxTries() : $maxTries;
 
-        if ($job->timeoutAt() && $job->timeoutAt() <= Carbon::now()->getTimestamp()) {
+        if ($job->timeoutAt() && $job->timeoutAt() <= now()->getTimestamp()) {
             $this->failJob($connectionName, $job, $e);
         }
 
@@ -581,8 +580,6 @@ class Worker
      */
     public function kill($status = 0)
     {
-        $this->events->dispatch(new Events\WorkerStopping);
-
         if (extension_loaded('posix')) {
             posix_kill(getmypid(), SIGKILL);
         }
@@ -593,16 +590,12 @@ class Worker
     /**
      * Sleep the script for a given number of seconds.
      *
-     * @param  int|float   $seconds
+     * @param  int   $seconds
      * @return void
      */
     public function sleep($seconds)
     {
-        if ($seconds < 1) {
-            usleep($seconds * 1000000);
-        } else {
-            sleep($seconds);
-        }
+        sleep($seconds);
     }
 
     /**

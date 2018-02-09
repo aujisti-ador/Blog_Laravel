@@ -56,7 +56,7 @@
                             <a href="#"><i class="halflings-icon cog"></i></a>
                         </div>
                         <h2>Login to your account</h2>
-                        <form class="form-horizontal" action="index.html" method="post">
+                        <form class="form-horizontal" action="{{URL::to('admin_login')}}" method="post">
                             <fieldset>
 
                                 <div class="input-prepend" title="Username">

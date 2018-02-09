@@ -942,13 +942,11 @@ class Validator implements ValidatorContract
      * Set the custom messages for the validator.
      *
      * @param  array  $messages
-     * @return $this
+     * @return void
      */
     public function setCustomMessages(array $messages)
     {
         $this->customMessages = array_merge($this->customMessages, $messages);
-
-        return $this;
     }
 
     /**

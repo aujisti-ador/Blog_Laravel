@@ -12,7 +12,11 @@ class PostgresBuilder extends Builder
      */
     public function hasTable($table)
     {
-        list($schema, $table) = $this->parseSchemaAndTable($table);
+        if (is_array($schema = $this->connection->getConfig('schema'))) {
+            $schema = head($schema);
+        }
+
+        $schema = $schema ? $schema : 'public';
 
         $table = $this->connection->getTablePrefix().$table;
 
@@ -30,16 +34,8 @@ class PostgresBuilder extends Builder
     {
         $tables = [];
 
-        $excludedTables = ['spatial_ref_sys'];
-
-        foreach ($this->getAllTables() as $row) {
-            $row = (array) $row;
-
-            $table = reset($row);
-
-            if (! in_array($table, $excludedTables)) {
-                $tables[] = $table;
-            }
+        foreach ($this->getAllTables() as $table) {
+            $tables[] = get_object_vars($table)[key($table)];
         }
 
         if (empty($tables)) {
@@ -71,7 +67,11 @@ class PostgresBuilder extends Builder
      */
     public function getColumnListing($table)
     {
-        list($schema, $table) = $this->parseSchemaAndTable($table);
+        if (is_array($schema = $this->connection->getConfig('schema'))) {
+            $schema = head($schema);
+        }
+
+        $schema = $schema ? $schema : 'public';
 
         $table = $this->connection->getTablePrefix().$table;
 
@@ -80,26 +80,5 @@ class PostgresBuilder extends Builder
         );
 
         return $this->connection->getPostProcessor()->processColumnListing($results);
-    }
-
-    /**
-     * Parse the table name and extract the schema and table.
-     *
-     * @param  string  $table
-     * @return array
-     */
-    protected function parseSchemaAndTable($table)
-    {
-        $table = explode('.', $table);
-
-        if (is_array($schema = $this->connection->getConfig('schema'))) {
-            if (in_array($table[0], $schema)) {
-                return [array_shift($table), implode('.', $table)];
-            }
-
-            $schema = head($schema);
-        }
-
-        return [$schema ?: 'public', implode('.', $table)];
     }
 }

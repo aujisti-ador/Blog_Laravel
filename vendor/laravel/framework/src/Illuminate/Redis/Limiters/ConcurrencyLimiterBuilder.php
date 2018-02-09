@@ -47,7 +47,7 @@ class ConcurrencyLimiterBuilder
     /**
      * Create a new builder instance.
      *
-     * @param  \Illuminate\Redis\Connections\Connection  $connection
+     * @param  \Illuminate\Redis\Connetions\Connection  $connection
      * @param  string  $name
      * @return void
      */
@@ -97,13 +97,11 @@ class ConcurrencyLimiterBuilder
     }
 
     /**
-     * Execute the given callback if a lock is obtained, otherwise call the failure callback.
+     * Execute the given callback if a lock is obtained, otherise call the failure callback.
      *
      * @param  callable  $callback
-     * @param  callable|null  $failure
+     * @param  callable  $failure
      * @return mixed
-     *
-     * @throws \Illuminate\Contracts\Redis\LimiterTimeoutException
      */
     public function then(callable $callback, callable $failure = null)
     {

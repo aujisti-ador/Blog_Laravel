@@ -69,7 +69,7 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
     /**
      * Render the paginator using the given view.
      *
-     * @param  string|null  $view
+     * @param  string  $view
      * @param  array  $data
      * @return \Illuminate\Support\HtmlString
      */
@@ -81,9 +81,9 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
     /**
      * Render the paginator using the given view.
      *
-     * @param  string|null  $view
+     * @param  string  $view
      * @param  array  $data
-     * @return \Illuminate\Support\HtmlString
+     * @return string
      */
     public function render($view = null, $data = [])
     {

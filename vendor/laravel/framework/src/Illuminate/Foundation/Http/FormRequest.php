@@ -172,11 +172,9 @@ class FormRequest extends Request implements ValidatesWhenResolved
      */
     public function validated()
     {
-        $rules = $this->container->call([$this, 'rules']);
-
-        return $this->only(collect($rules)->keys()->map(function ($rule) {
-            return str_contains($rule, '.') ? explode('.', $rule)[0] : $rule;
-        })->unique()->toArray());
+        return $this->only(array_keys(
+            $this->container->call([$this, 'rules'])
+        ));
     }
 
     /**

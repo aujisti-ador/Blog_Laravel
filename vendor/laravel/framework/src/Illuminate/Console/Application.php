@@ -3,15 +3,13 @@
 namespace Illuminate\Console;
 
 use Closure;
-use Illuminate\Support\ProcessUtils;
 use Illuminate\Contracts\Events\Dispatcher;
+use Symfony\Component\Process\ProcessUtils;
 use Illuminate\Contracts\Container\Container;
-use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application as SymfonyApplication;
@@ -75,14 +73,10 @@ class Application extends SymfonyApplication implements ApplicationContract
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
-        $commandName = $this->getCommandName(
-            $input = $input ?: new ArgvInput
-        );
+        $commandName = $this->getCommandName($input);
 
         $this->events->fire(
-            new Events\CommandStarting(
-                $commandName, $input, $output = $output ?: new ConsoleOutput
-            )
+            new Events\CommandStarting($commandName, $input, $output)
         );
 
         $exitCode = parent::run($input, $output);

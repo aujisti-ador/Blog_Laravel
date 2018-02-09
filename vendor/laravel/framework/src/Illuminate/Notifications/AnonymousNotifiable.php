@@ -39,17 +39,6 @@ class AnonymousNotifiable
     }
 
     /**
-     * Send the given notification immediately.
-     *
-     * @param  mixed  $notification
-     * @return void
-     */
-    public function notifyNow($notification)
-    {
-        app(Dispatcher::class)->sendNow($this, $notification);
-    }
-
-    /**
      * Get the notification routing information for the given driver.
      *
      * @param  string  $driver
@@ -58,15 +47,5 @@ class AnonymousNotifiable
     public function routeNotificationFor($driver)
     {
         return $this->routes[$driver] ?? null;
-    }
-
-    /**
-     * Get the value of the notifiable's primary key.
-     *
-     * @return mixed
-     */
-    public function getKey()
-    {
-        //
     }
 }

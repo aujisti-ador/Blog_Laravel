@@ -77,7 +77,7 @@ class DatabaseFailedJobProvider implements FailedJobProviderInterface
      * Get a single failed job.
      *
      * @param  mixed  $id
-     * @return object|null
+     * @return array
      */
     public function find($id)
     {

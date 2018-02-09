@@ -8,7 +8,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class DummyClass implements ShouldQueue
 {
     use InteractsWithQueue;
-    
+
+    /**
+     * The events handled by the listener.
+     *
+     * @var array
+     */
+    public static $listensFor = [
+        //
+    ];
+
     /**
      * Create the event listener.
      *
