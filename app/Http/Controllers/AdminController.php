@@ -16,9 +16,12 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
     
-    public function admin_login_check()
+    public function admin_login_check(Request $request)
     {
         echo "admin login done!";
+        $email_address = $request->email_address;
+        $admin_password = $request->admin_password;
+        echo $email_address."------------".$admin_password;
     }
 
     /**
