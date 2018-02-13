@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class AdminController extends Controller {
 
@@ -33,6 +34,7 @@ class AdminController extends Controller {
         if ($user) {
             echo "admin login done!";
         } else {
+            Session::put('message','wrong username or password!');
             return redirect::to('admin_panel');
         }
     }

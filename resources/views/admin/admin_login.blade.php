@@ -52,10 +52,13 @@
                 <div class="row-fluid">
                     <div class="login-box">
                         <div class="icons">
-                            <a href="index.html"><i class="halflings-icon home"></i></a>
-                            <a href="#"><i class="halflings-icon cog"></i></a>
+                            <a href="{{URL::to ('/')}}"><i class="halflings-icon home"></i></a>
                         </div>
                         <h2>Login to your account</h2>
+                        <h3 style="color: red;">
+                            <?php echo Session::get('message'); ?>
+                            <?php echo Session::put('message', ''); ?>
+                        </h3>
                         {!! Form::open(['url' => 'admin_login','method'=>'post']) !!}
                         <fieldset>
 
@@ -77,7 +80,7 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                             <div class="clearfix"></div>
-                        {!! Form::close() !!}
+                            {!! Form::close() !!}
                             <hr>
                             <h3>Forgot Password?</h3>
                             <p>
