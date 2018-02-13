@@ -3,25 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('admin.admin_login');
     }
-    
-    public function admin_login_check(Request $request)
-    {
-        echo "admin login done!";
+
+    public function admin_login_check(Request $request) {
         $email_address = $request->email_address;
         $admin_password = $request->admin_password;
-        echo $email_address."------------".$admin_password;
+//        echo $email_address."------------".$admin_password;
+
+        $user = DB::table('tbl_admin')
+                ->select('*')
+                ->where('email_address', $email_address)
+                ->where('admin_password', md5($admin_password))
+                ->first();
+        //$users = DB::table('tbl_admin')->count();
+//        echo '<pre>';
+//        print_r($user);
+        if ($user) {
+            echo "admin login done!";
+        } else {
+            return redirect::to('admin_panel');
+        }
     }
 
     /**
@@ -29,8 +42,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -40,8 +52,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -51,8 +62,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -62,8 +72,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -74,8 +83,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -85,8 +93,8 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }
