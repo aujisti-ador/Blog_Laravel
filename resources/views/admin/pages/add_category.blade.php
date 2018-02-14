@@ -32,7 +32,7 @@
                             <input type="text" class="span6 typeahead" id="typeahead">
                         </div>
                     </div>
-                                               
+
                     <div class="control-group hidden-phone">
                         <label class="control-label" for="textarea2">Category Description</label>
                         <div class="controls">
@@ -44,8 +44,8 @@
                         <div class="controls">
                             <select name="publication_status">
                                 <option>-----Publication Status-----</option>
-                                <option>Published</option>
-                                <option>Unpublished</option>
+                                <option value = "1">Published</option>
+                                <option value = "0">Unpublished</option>
                             </select>
                         </div>
                     </div>
