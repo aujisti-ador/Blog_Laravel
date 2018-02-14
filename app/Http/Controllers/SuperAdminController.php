@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use DB;
 
 class SuperAdminController extends Controller {
 
@@ -26,6 +27,17 @@ class SuperAdminController extends Controller {
         $add_category = view('admin.pages.add_category');
         return view('admin.admin_master')
                         ->with('admin_main_content', $add_category);
+    }
+
+    public function save_category(Request $request) {
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['category_description'] = $request->category_description;
+        $data['publication_status'] = $request->publication_status;
+        $data['created_at'] = date("Y-m-d H-i-s");
+        DB::table('tbl_category')->insert($data);
+        Session::put('message','Category Saved Successfully!');
+        return redirect::to('add_category');
     }
 
     /**
