@@ -16,7 +16,9 @@ class SuperAdminController extends Controller {
     public function index() {
         $this->checkLogin();
         //this is Dashboard
-        return view('admin.admin_master');
+        $dashboard_home = view ('admin.pages.dashboard_home');
+        return view('admin.admin_master')
+                                    ->with('admin_main_content',$dashboard_home);
     }
 
     /**
