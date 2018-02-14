@@ -24,4 +24,5 @@ Route::get('/contact', 'IndexController@contact');
 Route::get('/admin_panel','AdminController@index');
 Route::post('/admin_login','AdminController@admin_login_check');
 Route::get('/dashboard','SuperAdminController@index');
+Route::get('/add_category','SuperAdminController@add_category');
 Route::get('/logout','SuperAdminController@logout');
