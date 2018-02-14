@@ -52,7 +52,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html"><span>Metro</span></a>
+                    <a class="brand" href="{{URL::to('dashboard')}}"><span>Metro</span></a>
 
                     <!-- start: Header Menu -->
                     <div class="nav-no-collapse header-nav">
@@ -335,43 +335,43 @@
                     <div class="nav-collapse sidebar-nav">
                         <ul class="nav nav-tabs nav-stacked main-menu">
                             <li><a href="{{URL::to('dashboard')}}"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
-                        <li><a href="{{URL::to('add_category')}}"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Category</span></a></li>
-                        <li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
+                            <li><a href="{{URL::to('add_category')}}"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Category</span></a></li>
+                            <li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
                             <li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
-                                <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widg                                                    ets</span></a></li>
-                                                                     <li>
-                                                    <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdo                                                                                    wn</span><span class="label label-important"> 3 </span></a>
-                                                                                                        <ul>
+                            <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
+                            <li>
+                                <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
+                                <ul>
                                     <li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
-                                                                                                                    <li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+                                    <li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
                                     <li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
                                 </ul>	
-                                                                                        </li>
-                                                                                    <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+                            </li>
+                            <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
                             <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
-                                                                                            <li><a href="typography.html"><i class="ico                                                                                                                n-font"></i><span class="hidden-tablet"> Typography</span></a></li>
-                                                                                                <li><a href="gallery.html"><                                                                                                                i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
-                                                                                                            <li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
+                            <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
+                            <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
+                            <li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
                             <li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
-                                                                                                                    <li><a href="file-manager.html                                                                                                                                        "><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
-                                                                                                                        <li><a href="icon.html"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
-                                                                                                                                    <li><a href="login.html"><i class=                                                                                                                        "icon-lock"></i><span c                                                                                                                                            lass="hidden-tablet"> Login Page</span></a></li>
+                            <li><a href="file-manager.html"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+                            <li><a href="icon.html"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
+                            <li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Login Page</span></a></li>
                         </ul>
                     </div>
-                                                                                                                                                 </div>
-                                                                                                                                                             <!-- end: Main Menu -->
+                </div>
+                <!-- end: Main Menu -->
 
                 <noscript>
                 <div class="alert alert-block span10">
                     <h4 class="alert-heading">Warning!</h4>
                     <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
-                                                                                                                                            </div>
-                                                                                                                                                            </noscript>
+                </div>
+                </noscript>
 
-                                                                              <!-- start: Content -->
-                                                                                                                                                                                                                                                                                      <div id="content" class="span10">
-                    
-                                                                                                                                                    @yield ('admin_main_content')
+                <!-- start: Content -->
+                <div id="content" class="span10">
+
+                    @yield ('admin_main_content')
 
                 </div><!--/.fluid-container-->
 
@@ -379,88 +379,88 @@
             </div><!--/#content.span10-->
         </div><!--/fluid-row-->
 
-                                                                                                                                                 <div class="modal hide fade" id="myModal">
-                                                                                                                                                            <div class="modal-header">
+        <div class="modal hide fade" id="myModal">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3>Settings</h3>
             </div>
-                                                                                                                                                            <div class="modal-body">
+            <div class="modal-body">
                 <p>Here settings can be configured...</p>
-                                                                                                                                                </div>
-                                                                                                                                            <div class="modal-footer">
-                                                                                                                                                <a href="#" class="btn" data-dismiss="modal">Close</a>
-                                                                                                                                                <a href="#" class="btn btn-primary">Save changes</a>
-                                                                                                                                            </div>
-                                                                                                                                                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
 
-                                                                                                                                                <div class="clearfix"></div>
+        <div class="clearfix"></div>
 
-                                                                                                                                                <footer>
+        <footer>
 
             <p>
-                                                                                                                                             <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+                <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
 
-                                                                                                                                                 </p>
+            </p>
 
-                                                                                                                                                 </footer>
+        </footer>
 
-                                                                                                                                                 <!-- start: JavaScript-->
+        <!-- start: JavaScript-->
 
-                                                                                                                                                 <script src="{{asset('public/admin_asset/js/jquery-1.9.1.min.js')}}"></script>
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery-migrate-1.0.0.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery-migrate-1.0.0.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery-ui-1.10.0.custom.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery-ui-1.10.0.custom.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.ui.touch-punch.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.ui.touch-punch.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/modernizr.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/modernizr.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/bootstrap.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.cookie.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.cookie.js')}}"></script>
 
-                                                                                                                                                         <script src='{{asset('public/admin_asset/js/fullcalendar.min.js')}}'></script>
+        <script src='{{asset('public/admin_asset/js/fullcalendar.min.js')}}'></script>
 
-                                                                                                                                                         <script src='{{asset('public/admin_asset/js/jquery.dataTables.min.js')}}'></script>
+        <script src='{{asset('public/admin_asset/js/jquery.dataTables.min.js')}}'></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/excanvas.js')}}"></script>
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.flot.js')}}"></script>
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.flot.pie.js')}}"></script>
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.flot.stack.js')}}"></script>
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.flot.resize.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/excanvas.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.flot.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.flot.pie.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.flot.stack.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.flot.resize.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.chosen.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.chosen.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.uniform.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.uniform.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.cleditor.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.cleditor.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.noty.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.noty.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.elfinder.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.elfinder.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.raty.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.raty.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.iphone.toggle.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.iphone.toggle.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.uploadify-3.1.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.uploadify-3.1.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.gritter.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.gritter.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.imagesloaded.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.imagesloaded.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.masonry.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.masonry.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.knob.modified.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.knob.modified.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/jquery.sparkline.min.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/jquery.sparkline.min.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/counter.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/counter.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/retina.js')}}"></script>
+        <script src="{{asset('public/admin_asset/js/retina.js')}}"></script>
 
-                                                                                                                                                         <script src="{{asset('public/admin_asset/js/custom.js')}}"></script>
-                                                                                                                                                         <!-- end: JavaScript-->
+        <script src="{{asset('public/admin_asset/js/custom.js')}}"></script>
+        <!-- end: JavaScript-->
 
-                                                                                                                                                         </body>
-                                                                                                                                                         </html>
+    </body>
+</html>
