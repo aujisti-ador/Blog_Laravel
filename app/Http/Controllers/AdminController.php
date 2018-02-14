@@ -33,9 +33,9 @@ class AdminController extends Controller {
 //        print_r($user);
         if ($user) {
             //echo "admin login done!";
-            return view('admin.admin_master');
+            return redirect::to('dashboard');
         } else {
-            Session::put('message','wrong username or password!');
+            Session::put('message', 'wrong username or password!');
             return redirect::to('admin_panel');
         }
     }

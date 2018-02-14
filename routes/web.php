@@ -23,3 +23,4 @@ Route::get('/contact', 'IndexController@contact');
 //start admin panel Routs
 Route::get('/admin_panel','AdminController@index');
 Route::post('/admin_login','AdminController@admin_login_check');
+Route::get('/dashboard','SuperAdminController@index');
