@@ -14,6 +14,8 @@ class SuperAdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $this->checkLogin();
+        //this is Dashboard
         return view('admin.admin_master');
     }
 
@@ -27,6 +29,15 @@ class SuperAdminController extends Controller {
         Session::put('admin_name', '');
         Session::put('message', 'Logout Successfully!');
         return redirect::to('admin_panel');
+    }
+
+    public function checkLogin() {
+        //to prevent from back button and check whether user logged in or not
+        $admin_id = Session::get('admin_id');
+
+        if ($admin_id == NULL) {
+            return redirect::to('admin_panel')->send();
+        }
     }
 
     /**

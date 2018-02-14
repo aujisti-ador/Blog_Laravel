@@ -15,6 +15,7 @@ class AdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        $this->checkLogin();
         return view('admin.admin_login');
     }
 
@@ -33,8 +34,8 @@ class AdminController extends Controller {
 //        print_r($result);
         if ($result) {
             //echo "admin login done!";
-            Session::put('admin_id',$result->admin_id);
-            Session::put('admin_name',$result->admin_name);
+            Session::put('admin_id', $result->admin_id);
+            Session::put('admin_name', $result->admin_name);
             return redirect::to('dashboard');
         } else {
             Session::put('message', 'wrong resultname or password!');
@@ -47,6 +48,15 @@ class AdminController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public function checkLogin() {
+        //to prevent from back button and check whether user logged in or not
+        $admin_id = Session::get('admin_id');
+
+        if ($admin_id != NULL) {
+            return redirect::to('dashboard')->send();
+        }
+    }
+
     public function create() {
         //
     }
