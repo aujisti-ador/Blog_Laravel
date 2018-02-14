@@ -23,19 +23,21 @@ class AdminController extends Controller {
         $admin_password = $request->admin_password;
 //        echo $email_address."------------".$admin_password;
 
-        $user = DB::table('tbl_admin')
+        $result = DB::table('tbl_admin')
                 ->select('*')
                 ->where('email_address', $email_address)
                 ->where('admin_password', md5($admin_password))
                 ->first();
-        //$users = DB::table('tbl_admin')->count();
+        //$results = DB::table('tbl_admin')->count();
 //        echo '<pre>';
-//        print_r($user);
-        if ($user) {
+//        print_r($result);
+        if ($result) {
             //echo "admin login done!";
+            Session::put('admin_id',$result->admin_id);
+            Session::put('admin_name',$result->admin_name);
             return redirect::to('dashboard');
         } else {
-            Session::put('message', 'wrong username or password!');
+            Session::put('message', 'wrong resultname or password!');
             return redirect::to('admin_panel');
         }
     }
