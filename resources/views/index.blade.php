@@ -115,6 +115,7 @@ jQuery(document).ready(function ($) {
                     <?php
                     if ($sidebar == 1) {
                         ?>
+                    <!--sidebar-->
                         <div class="col-md-4 content-main-right">
                             <div class="search">
                                 <h3>SEARCH HERE</h3>
