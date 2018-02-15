@@ -36,80 +36,87 @@ class SuperAdminController extends Controller {
         $data['publication_status'] = $request->publication_status;
         $data['created_at'] = date("Y-m-d H-i-s");
         DB::table('tbl_category')->insert($data);
-        Session::put('message','Category Saved Successfully!');
+        Session::put('message', 'Category Saved Successfully!');
         return redirect::to('add_category');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logout() {
-        Session::put('admin_id', '');
-        Session::put('admin_name', '');
-        Session::put('message', 'Logout Successfully!');
-        return redirect::to('admin_panel');
+    public function manage_category() {
+        $manage_category = view('admin.pages.manage_category');
+        return view('admin.admin_master')
+                        ->with('admin_main_content', $manage_category);
+        
     }
 
-    public function checkLogin() {
-        //to prevent from back button and check whether user logged in or not
-        $admin_id = Session::get('admin_id');
+/**
+ * Show the form for creating a new resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+public function logout() {
+    Session::put('admin_id', '');
+    Session::put('admin_name', '');
+    Session::put('message', 'Logout Successfully!');
+    return redirect::to('admin_panel');
+}
 
-        if ($admin_id == NULL) {
-            return redirect::to('admin_panel')->send();
-        }
-    }
+public function checkLogin() {
+    //to prevent from back button and check whether user logged in or not
+    $admin_id = Session::get('admin_id');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-        //
+    if ($admin_id == NULL) {
+        return redirect::to('admin_panel')->send();
     }
+}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        //
-    }
+/**
+ * Store a newly created resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */
+public function store(Request $request) {
+    //
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //
-    }
+/**
+ * Display the specified resource.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function show($id) {
+    //
+}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
-        //
-    }
+/**
+ * Show the form for editing the specified resource.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function edit($id) {
+    //
+}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id) {
-        //
-    }
+/**
+ * Update the specified resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function update(Request $request, $id) {
+    //
+}
+
+/**
+ * Remove the specified resource from storage.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function destroy($id) {
+    //
+}
 
 }
