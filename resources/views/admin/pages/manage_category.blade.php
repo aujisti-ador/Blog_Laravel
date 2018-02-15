@@ -43,27 +43,36 @@
                                         ?>
                                         <span class="label label-success">Published</span>
                                     </td>
-                                <?php
+                                    <?php
                                 } elseif ($v_category->publication_status == 0) {
                                     ?>
-                                        <span class="label label-important">Unpublished</span>
-                                <?php 
-                                
-                                }?>
+                            <span class="label label-important">Unpublished</span>
+                        <?php }
+                        ?>
 
-                                    <td class="center">
-                                        <a class="btn btn-success" href="#">
-                                            <i class="halflings-icon white zoom-in"></i>  
-                                        </a>
-                                        <a class="btn btn-info" href="#">
-                                            <i class="halflings-icon white edit"></i>  
-                                        </a>
-                                        <a class="btn btn-danger" href="#">
-                                            <i class="halflings-icon white trash"></i> 
-                                        </a>
-                                    </td>
-                                </tr>
+                        <td class="center">
+                            <?php
+                            if ($v_category->publication_status == 1) {
+                                ?>
+                                <a class="btn btn-danger" href="#">
+                                    <i class="halflings-icon white arrow-down"></i>  
+                                </a>
+                                <?php
+                            } elseif ($v_category->publication_status == 0) {
+                                ?>
+                                <a class="btn btn-success" href="#">
+                                    <i class="halflings-icon white arrow-up"></i>  
+                                </a>
                             <?php } ?>
+                            <a class="btn btn-info" href="#">
+                                <i class="halflings-icon white edit"></i>  
+                            </a>
+                            <a class="btn btn-danger" href="#">
+                                <i class="halflings-icon white trash"></i> 
+                            </a>
+                        </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>            
             </div>
