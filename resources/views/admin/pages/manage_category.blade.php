@@ -60,7 +60,7 @@
                                 <?php
                             } elseif ($v_category->publication_status == 0) {
                                 ?>
-                                <a class="btn btn-success" href="#">
+                                <a class="btn btn-success" href="{{URL::to('/publish_category/'.$v_category->category_id)}}">
                                     <i class="halflings-icon white arrow-up"></i>  
                                 </a>
                             <?php } ?>

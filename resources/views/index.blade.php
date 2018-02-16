@@ -71,17 +71,17 @@ jQuery(document).ready(function ($) {
                     <h1>Lorem ipsum dolor sit amet</h1>
                     <h2>cliquam tincidunt mauris</h2>
                 </div>
-                <?php if ($banner_link==1) { ?>
-                
-                <div class="banner-links">
-                    <ul>
-                        <li class="active"><a href="#">LOREM IPSUM</a></li>
-                        <li><a href="#">DOLAR SITE AMET</a></li>
-                        <li><a href="#">MORBI IN SEM</a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-                
+                <?php if ($banner_link == 1) { ?>
+
+                    <div class="banner-links">
+                        <ul>
+                            <li class="active"><a href="#">LOREM IPSUM</a></li>
+                            <li><a href="#">DOLAR SITE AMET</a></li>
+                            <li><a href="#">MORBI IN SEM</a></li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+
                 <?php } ?>
             </div>
         </div>
@@ -115,7 +115,7 @@ jQuery(document).ready(function ($) {
                     <?php
                     if ($sidebar == 1) {
                         ?>
-                    <!--sidebar-->
+                        <!--sidebar-->
                         <div class="col-md-4 content-main-right">
                             <div class="search">
                                 <h3>SEARCH HERE</h3>
@@ -126,9 +126,15 @@ jQuery(document).ready(function ($) {
                             </div>
                             <div class="categories">
                                 <h3>CATEGORIES</h3>
-                                <li class="active"><a href="#">Donec quis dui at dolor tempor</a></li>
-                                <li><a href="#">Vestibulum commodo felis quis tort</a></li>
-                                <li><a href="#">Fusce pellentesque suscipit</a></li>
+                                <?php
+                                $all_published_category = DB::table('tbl_category')
+                                        ->select('*')
+                                        ->where('publication_status', 1)
+                                        ->get();
+                                foreach ($all_published_category as $v_category) {
+                                ?>
+                                <li class="active"><a href="#">{{$v_category->category_name}}</a></li>
+                                <?php }?>
                             </div>
                             <div class="archives">
                                 <h3>ARCHIVES</h3>

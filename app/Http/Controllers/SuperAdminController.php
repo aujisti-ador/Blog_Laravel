@@ -57,6 +57,16 @@ class SuperAdminController extends Controller {
         DB::table('tbl_category')
                     ->where ('category_id',$category_id)
                     ->update($data);
+        return redirect::to('/manage_category');
+    }
+    public function publish_category($category_id) {
+        $data = array();
+        $data['publication_status']=1;
+        
+        DB::table('tbl_category')
+                    ->where ('category_id',$category_id)
+                    ->update($data);
+        return redirect::to('/manage_category');
     }
 
     /**

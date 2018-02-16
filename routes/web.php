@@ -14,6 +14,8 @@
 //Route::get('/', function () {
 //    return view('index');
 //});
+
+
 //blog frontend Routs
 Route::get('/', 'IndexController@index');
 Route::get('/blog_details', 'IndexController@blog_details');
@@ -32,3 +34,4 @@ Route::get('/add_category', 'SuperAdminController@add_category');
 Route::post('/save_category', 'SuperAdminController@save_category');
 Route::get('/manage_category', 'SuperAdminController@manage_category');
 Route::get('/unpublish_category/{id}', 'SuperAdminController@unpublish_category');
+Route::get('/publish_category/{id}', 'SuperAdminController@publish_category');
