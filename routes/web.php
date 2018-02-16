@@ -31,6 +31,7 @@ Route::get('/logout', 'SuperAdminController@logout');
 
 //pages
 Route::get('/add_category', 'SuperAdminController@add_category');
+Route::get('/delete_category/{id}', 'SuperAdminController@delete_category');
 Route::post('/save_category', 'SuperAdminController@save_category');
 Route::get('/manage_category', 'SuperAdminController@manage_category');
 Route::get('/unpublish_category/{id}', 'SuperAdminController@unpublish_category');

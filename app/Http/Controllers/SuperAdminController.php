@@ -50,22 +50,30 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $manage_category);
     }
 
-    public function unpublish_category($category_id) {
-        $data = array();
-        $data['publication_status']=0;
-        
+    public function delete_category($category_id) {
         DB::table('tbl_category')
-                    ->where ('category_id',$category_id)
-                    ->update($data);
+                ->where('category_id', $category_id)
+                ->delete();
         return redirect::to('/manage_category');
     }
+
+    public function unpublish_category($category_id) {
+        $data = array();
+        $data['publication_status'] = 0;
+
+        DB::table('tbl_category')
+                ->where('category_id', $category_id)
+                ->update($data);
+        return redirect::to('/manage_category');
+    }
+
     public function publish_category($category_id) {
         $data = array();
-        $data['publication_status']=1;
-        
+        $data['publication_status'] = 1;
+
         DB::table('tbl_category')
-                    ->where ('category_id',$category_id)
-                    ->update($data);
+                ->where('category_id', $category_id)
+                ->update($data);
         return redirect::to('/manage_category');
     }
 

@@ -67,7 +67,7 @@
                             <a class="btn btn-info" href="#">
                                 <i class="halflings-icon white edit"></i>  
                             </a>
-                            <a class="btn btn-danger" href="#">
+                            <a class="btn btn-danger" href="{{URL::to('/delete_category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white trash"></i> 
                             </a>
                         </td>
