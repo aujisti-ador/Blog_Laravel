@@ -54,7 +54,7 @@
                             <?php
                             if ($v_category->publication_status == 1) {
                                 ?>
-                                <a class="btn btn-danger" href="#">
+                                <a class="btn btn-danger" href="{{URL::to('/unpublish_category/'.$v_category->category_id)}}">
                                     <i class="halflings-icon white arrow-down"></i>  
                                 </a>
                                 <?php

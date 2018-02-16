@@ -45,9 +45,18 @@ class SuperAdminController extends Controller {
                 ->select('*')
                 ->get();
         $manage_category = view('admin.pages.manage_category')
-                        ->with('all_category', $all_category);
+                ->with('all_category', $all_category);
         return view('admin.admin_master')
                         ->with('admin_main_content', $manage_category);
+    }
+
+    public function unpublish_category($category_id) {
+        $data = array();
+        $data['publication_status']=0;
+        
+        DB::table('tbl_category')
+                    ->where ('category_id',$category_id)
+                    ->update($data);
     }
 
     /**
