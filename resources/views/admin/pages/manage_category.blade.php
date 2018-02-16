@@ -1,7 +1,19 @@
 @extend('admin.admin_master')
 @section('admin_main_content')
-<div id=
-     <ul class="breadcrumb">
+<script type="text/javascript">
+    function check_delete()
+    {
+        chk = confirm("Are You Sure to Delete This?");
+        if (chk)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+    <ul class="breadcrumb">
         <li>
             <i class="icon-home"></i>
             <a href="index.html">Home</a> 
@@ -65,9 +77,9 @@
                                 </a>
                             <?php } ?>
                             <a class="btn btn-info" href="#">
-                                <i class="halflings-icon white edit"></i>  
+                                <i class="halflings-icon white edit"></i                                    >  
                             </a>
-                            <a class="btn btn-danger" href="{{URL::to('/delete_category/'.$v_category->category_id)}}">
+                            <a class="btn btn-danger" href="{{URL::to('/delete_category/'.$v_category->category_id)}}" onclick="return check_delete();">
                                 <i class="halflings-icon white trash"></i> 
                             </a>
                         </td>
@@ -79,4 +91,4 @@
         </div><!--/span-->
 
     </div><!--/row-->
-    @endsection
+@endsection
