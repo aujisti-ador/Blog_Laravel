@@ -50,6 +50,27 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $manage_category);
     }
 
+    public function edit_category($category_id) {
+        $category_info_by_id = DB::table('tbl_category')
+                ->where('category_id', $category_id)
+                ->first();
+        $edit_category = view('admin.pages.edit_category')
+                ->with('category_info', $category_info_by_id);
+        return view('admin.admin_master')
+                        ->with('admin_main_content', $edit_category);
+    }
+
+    public function update_category(Request $request) {
+        $data = array();
+        $category_id = $request->category_id;
+        $data['category_name'] = $request->category_name;
+        $data['category_description'] = $request->category_description;
+        DB::table('tbl_category')
+                ->where('category_id', $category_id)
+                ->update($data);
+        return redirect::to('/manage_category');
+    }
+
     public function delete_category($category_id) {
         DB::table('tbl_category')
                 ->where('category_id', $category_id)

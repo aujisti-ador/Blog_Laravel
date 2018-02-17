@@ -23,39 +23,27 @@
                 <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
             </div>
         </div>
-        <h3 style="color:green">
-            <?php
-            echo Session::get('message');
-            Session::put('message', '');
-            ?>
-        </h3>
+
         <div class="box-content">
-            {!! Form::open(['url' => 'save_category' , 'method' => 'post']) !!}
+            {!! Form::open(['url' => 'update_category' , 'method' => 'post']) !!}
             <fieldset>
                 <div class="control-group">
                     <label class="control-label" for="typeahead">Category Name</label>
                     <div class="controls">
-                        <input type="text" name="category_name" class="span6 typeahead" id="typeahead">
+                        <input type="text" value="{{$category_info->category_name}}" name="category_name" class="span6 typeahead" id="typeahead">
+                        <input type="hidden" value="{{$category_info->category_id}}" name="category_id">
                     </div>
                 </div>
 
                 <div class="control-group hidden-phone">
                     <label class="control-label" for="textarea2">Category Description</label>
                     <div class="controls">
-                        <textarea class="cleditor" name="category_description" id="textarea2" rows="3"></textarea>
+                        <textarea class="cleditor" name="category_description" id="textarea2" rows="3">{{$category_info->category_description}}</textarea>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="typeahead">Publication Status</label>
-                    <div class="controls">
-                        <select name="publication_status">
-                            <option value = "1">Published</option>
-                            <option selected value = "0">Unpublished</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <button type="reset" class="btn">Cancel</button>
                 </div>
             </fieldset>
