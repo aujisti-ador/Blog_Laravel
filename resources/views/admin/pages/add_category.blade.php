@@ -60,7 +60,6 @@
                 </div>
             </fieldset>
             {!! Form::close() !!}
-
         </div>
     </div><!--/span-->
 

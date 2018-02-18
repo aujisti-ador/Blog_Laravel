@@ -29,6 +29,21 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $add_category);
     }
 
+    public function add_blog() {
+        $this->checkLogin();
+        $publish_category = DB::table('tbl_category')
+                ->where('publication_status', 1)
+                ->get();
+        $add_blog = view('admin.pages.add_blog')
+                ->with('publish_category', $publish_category);
+        return view('admin.admin_master')
+                        ->with('admin_main_content', $add_blog);
+    }
+
+    public function save_blog() {
+        
+    }
+
     public function save_category(Request $request) {
         $data = array();
         $data['category_name'] = $request->category_name;
