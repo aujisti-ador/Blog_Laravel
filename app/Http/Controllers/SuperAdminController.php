@@ -54,6 +54,7 @@ class SuperAdminController extends Controller {
 //        $data['created_at'] = date("Y-m-d H-i-s");
         
         DB::table('tbl_blog')->insert($data);
+        Session::put('message', 'Blog Saved Successfully!');
         return redirect::to('add_blog');
     }
 

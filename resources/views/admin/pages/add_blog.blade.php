@@ -23,6 +23,12 @@
                 <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
             </div>
         </div>
+        <h3 style="color:green">
+            <?php
+            echo Session::get('message');
+            Session::put('message', '');
+            ?>
+        </h3>
         <div class="box-content">
             {!! Form::open(['url' => 'save_blog' , 'method' => 'post']) !!}
             <fieldset>
