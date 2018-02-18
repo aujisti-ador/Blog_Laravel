@@ -56,7 +56,7 @@ return [
       | ahead and set this to a sensible default for you out of the box.
       |
      */
-    'timezone' => 'UTC',
+    'timezone' => "Asia/Dhaka",
     /*
       |--------------------------------------------------------------------------
       | Application Locale Configuration
