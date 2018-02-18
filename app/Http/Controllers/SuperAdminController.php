@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class SuperAdminController extends Controller {
 
@@ -40,8 +41,20 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $add_blog);
     }
 
-    public function save_blog() {
+    public function save_blog(Request $request) {
+        $data = array();
+        $data['blog_title'] = $request->blog_title;
+        $data['author_name'] = $request->author_name;
+        $data['category_id'] = $request->category_name;
+        $data['blog_short_description'] = $request->blog_short_description;
+        $data['blog_long_description'] = $request->blog_long_description;
+        $data['publication_status'] = $request->publication_status;
+        $data['created_at'] = Carbon::now();
+//        $data['created_at'] = Carbon::now()->toDayDateTimeString();
+//        $data['created_at'] = date("Y-m-d H-i-s");
         
+        DB::table('tbl_blog')->insert($data);
+        return redirect::to('add_blog');
     }
 
     public function save_category(Request $request) {
