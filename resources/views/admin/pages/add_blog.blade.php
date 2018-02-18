@@ -30,7 +30,7 @@
             ?>
         </h3>
         <div class="box-content">
-            {!! Form::open(['url' => 'save_blog' , 'method' => 'post']) !!}
+            {!! Form::open(['url' => 'save_blog' , 'method' => 'post' , 'enctype' => 'multipart/form-data']) !!}
             <fieldset>
                 <div class="control-group">
                     <label class="control-label" for="typeahead">Blog Title </label>
@@ -75,12 +75,12 @@
                         </select>
                     </div>
                 </div>
-<!--                <div class="control-group">
+                <div class="control-group">
                     <label class="control-label" for="fileInput">File input</label>
                     <div class="controls">
-                        <input class="input-file uniform_on" id="fileInput" type="file">
+                        <input class="input-file uniform_on" name="blog_image" required="" id="fileInput" type="file">
                     </div>
-                </div>          -->
+                </div>          
                 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Confirm</button>

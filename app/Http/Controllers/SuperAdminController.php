@@ -52,7 +52,26 @@ class SuperAdminController extends Controller {
         $data['created_at'] = Carbon::now();
 //        $data['created_at'] = Carbon::now()->toDayDateTimeString();
 //        $data['created_at'] = date("Y-m-d H-i-s");
-        
+
+        $image = $request->file('blog_image');
+//        echo '<pre>';
+//        print_r($image);
+//        exit();
+        if ($image) {
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = time() . $image_name . '.' . $ext;
+//            echo $image_full_name;
+//            exit();
+            $upload_path = public_path('/blog_images');
+            $image_url = $upload_path . $image_full_name;
+            $success = $image->move($upload_path, $image_full_name);
+
+            if ($success) {
+                $data['blog_image'] = $image_url;
+            }
+        }
+
         DB::table('tbl_blog')->insert($data);
         Session::put('message', 'Blog Saved Successfully!');
         return redirect::to('add_blog');
