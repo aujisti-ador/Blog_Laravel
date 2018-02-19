@@ -52,7 +52,6 @@ class SuperAdminController extends Controller {
         $data['created_at'] = Carbon::now();
 //        $data['created_at'] = Carbon::now()->toDayDateTimeString();
 //        $data['created_at'] = date("Y-m-d H-i-s");
-
         $image = $request->file('blog_image');
 //        echo '<pre>';
 //        print_r($image);
@@ -63,7 +62,7 @@ class SuperAdminController extends Controller {
             $image_full_name = time() . $image_name . '.' . $ext;
 //            echo $image_full_name;
 //            exit();
-            $upload_path = public_path('/blog_images');
+            $upload_path = 'public/blog_images/';
             $image_url = $upload_path . $image_full_name;
             $success = $image->move($upload_path, $image_full_name);
 
