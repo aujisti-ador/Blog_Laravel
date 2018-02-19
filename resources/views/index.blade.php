@@ -187,7 +187,7 @@ jQuery(document).ready(function ($) {
         <div class="copywrite">
             <div class="container">
                 <p>Copyrights &copy; 2015 Blogging All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
-                <p>Developed by: <a href="https://en.gravatar.com/aujistiador">Fazle Rabbi Ador</a></p>
+                <p>Developed by: <a href="https://en.gravatar.com/aujistiador" target="_blank">Fazle Rabbi Ador</a></p>
             </div>
         </div>
         <!---->
