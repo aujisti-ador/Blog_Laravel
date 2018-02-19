@@ -11,7 +11,7 @@
         <div class="content-grid-info">
             <h3><a href="single.html">{{$v_blog->blog_title}}</a></h3>
             <h5>{{$v_blog->created_at}}<br>Posted by: <a href="#">{{$v_blog->author_name}}</a></h5>
-            <p>{{$v_blog->blog_short_description}}</p>
+            <p>{!!$v_blog->blog_short_description!!}</p>
             <?php
             if ($v_blog->blog_image != NULL) {
                 ?>

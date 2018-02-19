@@ -132,15 +132,23 @@ jQuery(document).ready(function ($) {
                                         ->where('publication_status', 1)
                                         ->get();
                                 foreach ($all_published_category as $v_category) {
-                                ?>
-                                <li class="active"><a href="#">{{$v_category->category_name}}</a></li>
-                                <?php }?>
+                                    ?>
+                                    <li class="active"><a href="#">{{$v_category->category_name}}</a></li>
+                                <?php } ?>
                             </div>
                             <div class="archives">
-                                <h3>ARCHIVES</h3>
-                                <li class="active"><a href="#">July 2014</a></li>
-                                <li><a href="#">June 2014</a></li>
-                                <li><a href="#">May 2014</a></li>
+                                <h3>Recent Blog</h3>
+                                <?php
+                                $recent_blog = DB::table('tbl_blog')
+                                        ->where('publication_status', 1)
+                                        ->orderby('blog_id', 'desc')
+                                        ->take(5)
+                                        ->get();
+                                foreach ($recent_blog as $v_blog)
+                                {
+                                ?>
+                                <li class="active"><a href="#">{{$v_blog->blog_title}}</a></li>
+                                <?php }?>
                             </div>
                         </div>
                     <?php } ?>
@@ -179,6 +187,7 @@ jQuery(document).ready(function ($) {
         <div class="copywrite">
             <div class="container">
                 <p>Copyrights &copy; 2015 Blogging All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+                <p>Developed by: <a href="https://en.gravatar.com/aujistiador">Fazle Rabbi Ador</a></p>
             </div>
         </div>
         <!---->
