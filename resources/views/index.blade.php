@@ -68,8 +68,8 @@ jQuery(document).ready(function ($) {
             </div>
             <div class="container">
                 <div class="banner-head">
-                    <h1>Lorem ipsum dolor sit amet</h1>
-                    <h2>cliquam tincidunt mauris</h2>
+                    <h1>A Tech & Programming Based Blog</h1>
+                    <h3>Fazle Rabbi Ador</h3>
                 </div>
                 <?php if ($banner_link == 1) { ?>
 

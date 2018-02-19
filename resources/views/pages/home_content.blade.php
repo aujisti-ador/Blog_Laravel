@@ -4,15 +4,18 @@
     <div class="content-grid">
         <div class="content-grid-head">
             <h3>POST OF THE DAY</h3>
-            <h4>July 24, 2014,Posted by: <a href="#">Admin</a></h4>
+            
             <div class="clearfix"></div>
         </div>
+        @foreach($all_published_blog as $v_blog)
         <div class="content-grid-info">
-            <h3><a href="single.html">MORBI IN SEM QUIS DUI</a></h3>
-            <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-            <img src="{{asset('public/front_end_asset/images/c1.jpg')}}" alt=""/>
+            <h3><a href="single.html">{{$v_blog->blog_title}}</a></h3>
+            <h5>{{$v_blog->created_at}}<br>Posted by: <a href="#">{{$v_blog->author_name}}</a></h5>
+            <p>{{$v_blog->blog_short_description}}</p>
+            <img src="{{asset($v_blog->blog_image)}}" alt="blog image" width="500" height="300"/>
             <a class="bttn" href="{{URL::to ('/blog_details')}}">MORE</a>
         </div>
+        @endforeach
     </div>
     <div class="pages">
         <ul>

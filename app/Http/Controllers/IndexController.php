@@ -14,12 +14,18 @@ class indexController extends Controller {
      */
     public function index() {
 
-        $banner_link=1;
+        $all_published_blog = DB::table('tbl_blog')
+                ->where('publication_status', 1)
+                ->get();
+
+        $banner_link = 1;
         $sidebar = 1;
-        $home_content = view('pages.home_content');
+        $home_content = view('pages.home_content')
+                ->with('all_published_blog', $all_published_blog);
+
         return view('index')->with('main_content', $home_content)
                         ->with('sidebar', $sidebar)
-                        ->with ('banner_link',$banner_link);
+                        ->with('banner_link', $banner_link);
     }
 
     public function blog_details() {
@@ -29,17 +35,17 @@ class indexController extends Controller {
         $blog_details = view('pages.blog_details');
         return view('index')->with('main_content', $blog_details)
                         ->with('sidebar', $sidebar)
-                        ->with('banner_link',$banner_link);
+                        ->with('banner_link', $banner_link);
     }
 
     public function contact() {
 
-        $banner_link=0;
+        $banner_link = 0;
         $sidebar = 0;
         $contact = view('pages.contact');
         return view('index')->with('main_content', $contact)
                         ->with('sidebar', $sidebar)
-                        ->with ('banner_link',$banner_link);
+                        ->with('banner_link', $banner_link);
     }
 
     /**
