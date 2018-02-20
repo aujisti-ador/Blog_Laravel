@@ -30,14 +30,20 @@ Route::get('/admin_panel', 'AdminController@index');
 Route::get('/logout', 'SuperAdminController@logout');
 
 //pages
+//-------------------------------------
+//handle category og blog
 Route::get('/add_category', 'SuperAdminController@add_category');
 Route::get('/edit_category/{id}', 'SuperAdminController@edit_category');
 Route::get('/delete_category/{id}', 'SuperAdminController@delete_category');
 Route::post('/save_category', 'SuperAdminController@save_category');
 Route::post('/update_category', 'SuperAdminController@update_category');
 Route::get('/manage_category', 'SuperAdminController@manage_category');
-Route::get('/manage_blog', 'SuperAdminController@manage_blog');
 Route::get('/unpublish_category/{id}', 'SuperAdminController@unpublish_category');
 Route::get('/publish_category/{id}', 'SuperAdminController@publish_category');
+
+//handle blog post
+Route::get('/manage_blog', 'SuperAdminController@manage_blog');
 Route::get('/add_blog', 'SuperAdminController@add_blog');
 Route::post('/save_blog', 'SuperAdminController@save_blog');
+Route::get('/unpublish_blog/{id}', 'SuperAdminController@unpublish_blog');
+Route::get('/publish_blog/{id}', 'SuperAdminController@publish_blog');

@@ -107,6 +107,26 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $manage_blog);
     }
 
+    public function publish_blog($blog_id) {
+        $data = array();
+        $data['publication_status'] = 1;
+
+        DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->update($data);
+        return redirect::to('/manage_blog');
+    }
+
+    public function unpublish_blog($blog_id) {
+        $data = array();
+        $data['publication_status'] = 0;
+
+        DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->update($data);
+        return redirect::to('/manage_blog');
+    }
+
     public function edit_category($category_id) {
         $category_info_by_id = DB::table('tbl_category')
                 ->where('category_id', $category_id)
