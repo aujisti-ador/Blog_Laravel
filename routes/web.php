@@ -47,3 +47,4 @@ Route::get('/add_blog', 'SuperAdminController@add_blog');
 Route::post('/save_blog', 'SuperAdminController@save_blog');
 Route::get('/unpublish_blog/{id}', 'SuperAdminController@unpublish_blog');
 Route::get('/publish_blog/{id}', 'SuperAdminController@publish_blog');
+Route::get('/delete_blog/{id}', 'SuperAdminController@delete_blog');
