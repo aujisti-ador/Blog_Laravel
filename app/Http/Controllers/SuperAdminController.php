@@ -97,6 +97,16 @@ class SuperAdminController extends Controller {
                         ->with('admin_main_content', $manage_category);
     }
 
+    public function manage_blog() {
+        $blog_info = DB::table('tbl_blog')
+                ->select('*')
+                ->get();
+        $manage_blog = view('admin.pages.manage_blog')
+                ->with('blog_info', $blog_info);
+        return view('admin.admin_master')
+                        ->with('admin_main_content', $manage_blog);
+    }
+
     public function edit_category($category_id) {
         $category_info_by_id = DB::table('tbl_category')
                 ->where('category_id', $category_id)

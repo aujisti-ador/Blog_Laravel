@@ -4,7 +4,7 @@
 
         <!-- start: Meta -->
         <meta charset="utf-8">
-        <title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+        <title>Admin Panel</title>
         <meta name="description" content="Bootstrap Metro Dashboard">
         <meta name="author" content="Dennis Ji">
         <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -338,6 +338,7 @@
                             <li><a href="{{URL::to('add_category')}}"><i class="icon-list-ol"></i><span class="hidden-tablet"> Add Category</span></a></li>
                             <li><a href="{{URL::to('manage_category')}}"><i class="icon-tasks"></i><span class="hidden-tablet"> Manage Category</span></a></li>
                             <li><a href="{{URL::to('add_blog')}}"><i class="icon-plus-sign"></i><span class="hidden-tablet"> Write Blog Post</span></a></li>
+                            <li><a href="{{URL::to('manage_blog')}}"><i class="icon-tasks"></i><span class="hidden-tablet"> Manage Blog Post</span></a></li>
                             <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
                             <li>
                                 <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>

@@ -19,7 +19,7 @@
         <a href="index.html">Home</a> 
         <i class="icon-angle-right"></i>
     </li>
-    <li><a href="#">Tables</a></li>
+    <li><a href="#">Manage Category</a></li>
 </ul>
 
 <div class="row-fluid sortable">		
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable table-hover">
                 <thead>
                     <tr>
                         <th>Category ID</th>
