@@ -9,7 +9,7 @@
     </li>
     <li>
         <i class="icon-edit"></i>
-        <a href="#">Forms</a>
+        <a href="#">Add Blog Post</a>
     </li>
 </ul>
 

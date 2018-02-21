@@ -176,10 +176,26 @@ class SuperAdminController extends Controller {
     }
 
     public function delete_blog($blog_id) {
-        DB::table('tbl_category')
-                ->where('category_id', $category_id)
+        DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
                 ->delete();
-        return redirect::to('/manage_category');
+        return redirect::to('/manage_blog');
+    }
+
+    public function edit_blog($blog_id) {
+        $blog_info = DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->first();
+        $all_published_category = DB::table('tbl_category')
+                ->where('publication_status', 1)
+                ->get();
+
+        $edit_blog = view('admin.pages.edit_blog')
+                ->with('blog_info', $blog_info)
+                ->with('category_info', $all_published_category);
+
+        return view('admin.admin_master')
+                        ->with('admin_main_content', $edit_blog);
     }
 
     /**
