@@ -16,6 +16,7 @@ class indexController extends Controller {
 
         $all_published_blog = DB::table('tbl_blog')
                 ->where('publication_status', 1)
+                ->orderby('blog_id', 'desc')
                 ->get();
 
         $banner_link = 1;
