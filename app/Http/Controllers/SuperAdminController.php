@@ -137,12 +137,15 @@ class SuperAdminController extends Controller {
 
             if ($success) {
                 $data['blog_image'] = $image_url;
+                DB::table('tbl_blog')->insert($data);
+                Session::put('message', 'Blog Saved Successfully!');
+                return redirect::to('add_blog');
             }
+        } else {
+            DB::table('tbl_blog')->insert($data);
+            Session::put('message', 'Blog Saved Successfully!');
+            return redirect::to('add_blog');
         }
-
-        DB::table('tbl_blog')->insert($data);
-        Session::put('message', 'Blog Saved Successfully!');
-        return redirect::to('add_blog');
     }
 
     public function manage_blog() {
@@ -196,6 +199,49 @@ class SuperAdminController extends Controller {
 
         return view('admin.admin_master')
                         ->with('admin_main_content', $edit_blog);
+    }
+
+    public function update_blog(Request $request) {
+        $data = array();
+        $data['blog_title'] = $request->blog_title;
+        $blog_id = $request->blog_id;
+        $data['author_name'] = $request->author_name;
+        $data['category_id'] = $request->category_id;
+        $data['blog_short_description'] = $request->blog_short_description;
+        $data['blog_long_description'] = $request->blog_long_description;
+        $data['updated_at'] = Carbon::now();
+//        $data['created_at'] = Carbon::now()->toDayDateTimeString();
+//        $data['created_at'] = date("Y-m-d H-i-s");
+        $image = $request->file('blog_image');
+//        echo '<pre>';
+//        print_r($image);
+//        exit();
+        if ($image) {
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = time() . $image_name . '.' . $ext;
+//            echo $image_full_name;
+//            exit();
+            $upload_path = 'public/blog_images/';
+            $image_url = $upload_path . $image_full_name;
+            $success = $image->move($upload_path, $image_full_name);
+
+            if ($success) {
+                $data['blog_image'] = $image_url;
+                DB::table('tbl_blog')
+                        ->where('blog_id', $blog_id)
+                        ->update($data);
+                @unlink($request->blog_old_image);
+                Session::put('message', 'Blog Updated Successfully!');
+                return redirect::to('manage_blog');
+            }
+        } else {
+            DB::table('tbl_blog')
+                    ->where('blog_id', $blog_id)
+                    ->update($data);
+            Session::put('message', 'Blog Updated Successfully!');
+            return redirect::to('manage_blog');
+        }
     }
 
     /**

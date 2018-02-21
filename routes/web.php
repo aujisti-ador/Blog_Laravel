@@ -31,7 +31,7 @@ Route::get('/logout', 'SuperAdminController@logout');
 
 //pages
 //-------------------------------------
-//handle category og blog
+//handle category blog
 Route::get('/add_category', 'SuperAdminController@add_category');
 Route::get('/edit_category/{id}', 'SuperAdminController@edit_category');
 Route::get('/delete_category/{id}', 'SuperAdminController@delete_category');
@@ -46,6 +46,7 @@ Route::get('/manage_blog', 'SuperAdminController@manage_blog');
 Route::get('/add_blog', 'SuperAdminController@add_blog');
 Route::post('/save_blog', 'SuperAdminController@save_blog');
 Route::get('/edit_blog/{id}', 'SuperAdminController@edit_blog');
+Route::post('/update_blog', 'SuperAdminController@update_blog');
 Route::get('/unpublish_blog/{id}', 'SuperAdminController@unpublish_blog');
 Route::get('/publish_blog/{id}', 'SuperAdminController@publish_blog');
 Route::get('/delete_blog/{id}', 'SuperAdminController@delete_blog');

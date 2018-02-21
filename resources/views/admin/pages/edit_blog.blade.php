@@ -71,7 +71,8 @@
                 <div class="control-group">
                     <label class="control-label" for="fileInput">Image Upload</label>
                     <div class="controls">
-                        <input class="input-file uniform_on" name="blog_image" required="" id="fileInput" type="file">
+                        <input class="input-file uniform_on" name="blog_image" id="fileInput" type="file">
+                        <input class="input-file uniform_on" value="{{$blog_info->blog_image}}" name="blog_old_image" type="hidden">
                         <img src="{{asset($blog_info->blog_image)}}" width="60" height="60">
                     </div>
                 </div>          
