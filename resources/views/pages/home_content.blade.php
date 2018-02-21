@@ -9,7 +9,7 @@
         </div>
         @foreach($all_published_blog as $v_blog)
         <div class="content-grid-info">
-            <h3><a href="single.html">{{$v_blog->blog_title}}</a></h3>
+            <h3><a href="">{{$v_blog->blog_title}}</a></h3>
             <h5>{{$v_blog->created_at}}<br>Posted by: <a href="#">{{$v_blog->author_name}}</a></h5>
             <p>{!!$v_blog->blog_short_description!!}</p>
             <?php
@@ -17,7 +17,7 @@
                 ?>
             <img src="{{asset($v_blog->blog_image)}}" alt="blog image" width="500" height="300"/>
             <?php }?>
-            <a class="bttn" href="{{URL::to ('/blog_details')}}">MORE</a>
+            <a class="bttn" href="{{URL::to ('/blog_details/'.$v_blog->blog_id)}}">MORE</a>
         </div>
         @endforeach
     </div>

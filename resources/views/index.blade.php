@@ -52,7 +52,7 @@ jQuery(document).ready(function ($) {
                         <ul>
                             <li class="active"><a href="{{URL::to('/')}}">HOME</a></li>						
                             <li><a href="{{URL::to('/contact')}}">CONTACT</a></li>	
-                            <li><a href="terms.html">TERMS</a></li>						
+                            <li><a href="#">TERMS</a></li>						
                             <div class="clearfix"> </div>
                         </ul>
                     </div>
@@ -90,28 +90,12 @@ jQuery(document).ready(function ($) {
             <div class="container">
                 <div class="content-grids">
 
-
+                    <!--main content goes here-->
+                    
                     @yield('main_content')
 
-                    <!--                        <div class="content-grid-sec">
-                                                <div class="content-sec-info">
-                                                    <h3><a href="single.html">ALIQUAM TINCIDUNT MAURI</a></h3>
-                                                    <h4>Jul 23, 2014, Posted by : <a href="#">Admin</a></h4>
-                                                    <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-                                                    <img src="{{asset('public/front_end_asset/images/c2.jpg')}}" alt=""/>
-                                                    <a class="bttn" href="single.html">MORE</a>
-                                                </div>
-                                            </div>
-                                            <div class="content-grid-sec">
-                                                <div class="content-sec-info">
-                                                    <h3><a href="single.html">VESTIBULUM COMMODO FELIS</a></h3>
-                                                    <h4>Jul 23, 2014, Posted by : <a href="#">Admin</a></h4>
-                                                    <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.</p>
-                                                    <img src="{{asset('public/front_end_asset/images/c3.jpg')}}" alt=""/>
-                                                    <a class="bttn" href="single.html">MORE</a>
-                                                </div>
-                                            </div>				 -->
-
+                    <!--end of main content-->
+                    
                     <?php
                     if ($sidebar == 1) {
                         ?>
@@ -144,11 +128,10 @@ jQuery(document).ready(function ($) {
                                         ->orderby('blog_id', 'desc')
                                         ->take(5)
                                         ->get();
-                                foreach ($recent_blog as $v_blog)
-                                {
-                                ?>
-                                <li class="active"><a href="#">{{$v_blog->blog_title}}</a></li>
-                                <?php }?>
+                                foreach ($recent_blog as $v_blog) {
+                                    ?>
+                                    <li class="active"><a href="#">{{$v_blog->blog_title}}</a></li>
+                                <?php } ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -193,14 +176,14 @@ jQuery(document).ready(function ($) {
         <!---->
         <script type="text/javascript">
             $(document).ready(function () {
-                /*
-                 var defaults = {
-                 containerID: 'toTop', // fading element id
-                 containerHoverID: 'toTopHover', // fading element hover id
-                 scrollSpeed: 1200,
-                 easingType: 'linear' 
-                 };
-                 */
+
+                var defaults = {
+                    containerID: 'toTop', // fading element id
+                    containerHoverID: 'toTopHover', // fading element hover id
+                    scrollSpeed: 1200,
+                    easingType: 'linear'
+                };
+
                 $().UItoTop({easingType: 'easeOutQuart'});
             });
         </script>

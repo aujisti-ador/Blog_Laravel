@@ -29,11 +29,16 @@ class indexController extends Controller {
                         ->with('banner_link', $banner_link);
     }
 
-    public function blog_details() {
+    public function blog_details($blog_id) {
 
-        $banner_link = 1;
+        $banner_link = 0;
         $sidebar = 1;
-        $blog_details = view('pages.blog_details');
+        $blog_info = DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->first();
+
+        $blog_details = view('pages.blog_details')
+                ->with('blog_info', $blog_info);
         return view('index')->with('main_content', $blog_details)
                         ->with('sidebar', $sidebar)
                         ->with('banner_link', $banner_link);
