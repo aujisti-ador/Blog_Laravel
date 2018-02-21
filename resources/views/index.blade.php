@@ -91,11 +91,11 @@ jQuery(document).ready(function ($) {
                 <div class="content-grids">
 
                     <!--main content goes here-->
-                    
+
                     @yield('main_content')
 
                     <!--end of main content-->
-                    
+
                     <?php
                     if ($sidebar == 1) {
                         ?>
@@ -130,7 +130,7 @@ jQuery(document).ready(function ($) {
                                         ->get();
                                 foreach ($recent_blog as $v_blog) {
                                     ?>
-                                    <li class="active"><a href="#">{{$v_blog->blog_title}}</a></li>
+                                    <li class="active"><a href="{{URL::to('/blog_details/'.$v_blog->blog_id)}}">{{$v_blog->blog_title}}</a></li>
                                 <?php } ?>
                             </div>
                         </div>
@@ -169,8 +169,8 @@ jQuery(document).ready(function ($) {
         <!---fotter/-->
         <div class="copywrite">
             <div class="container">
-                <p>Copyrights &copy; 2015 Blogging All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
-                <p>Developed by: <a href="https://en.gravatar.com/aujistiador" target="_blank">Fazle Rabbi Ador</a></p>
+                <p>Copyrights &copy; 2015 Blogging All rights reserved | Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a></p>
+                <p>Backend Developed by: <a href="https://en.gravatar.com/aujistiador" target="_blank">Fazle Rabbi Ador</a></p>
             </div>
         </div>
         <!---->
