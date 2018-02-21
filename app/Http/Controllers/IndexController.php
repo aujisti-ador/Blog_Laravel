@@ -43,6 +43,24 @@ class indexController extends Controller {
                         ->with('sidebar', $sidebar)
                         ->with('banner_link', $banner_link);
     }
+    
+    public function blog_post_by_category($category_id){
+        
+        $all_published_blog_by_category = DB::table('tbl_blog')
+                ->where('publication_status', 1)
+                ->where('category_id', $category_id)
+                ->orderby('blog_id', 'desc')
+                ->get();
+
+        $banner_link = 1;
+        $sidebar = 1;
+        $home_content = view('pages.home_content')
+                ->with('all_published_blog', $all_published_blog_by_category);
+
+        return view('index')->with('main_content', $home_content)
+                        ->with('sidebar', $sidebar)
+                        ->with('banner_link', $banner_link);
+    }
 
     public function contact() {
 

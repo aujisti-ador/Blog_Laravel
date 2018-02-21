@@ -117,7 +117,7 @@ jQuery(document).ready(function ($) {
                                         ->get();
                                 foreach ($all_published_category as $v_category) {
                                     ?>
-                                    <li class="active"><a href="#">{{$v_category->category_name}}</a></li>
+                                    <li class="active"><a href="{{URL::to('/blog_post_by_category/'.$v_category->category_id)}}">{{$v_category->category_name}}</a></li>
                                 <?php } ?>
                             </div>
                             <div class="archives">

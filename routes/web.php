@@ -19,6 +19,7 @@
 //blog frontend Routs
 Route::get('/', 'IndexController@index');
 Route::get('/blog_details/{id}', 'IndexController@blog_details');
+Route::get('/blog_post_by_category/{id}', 'IndexController@blog_post_by_category');
 Route::get('/contact', 'IndexController@contact');
 
 //start admin panel Routs
