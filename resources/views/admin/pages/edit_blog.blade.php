@@ -36,6 +36,7 @@
                     <label class="control-label" for="typeahead">Blog Title</label>
                     <div class="controls">
                         <input type="text" name="blog_title" value="{{$blog_info->blog_title}}" class="span6 typeahead" id="typeahead">
+                        <input type="hidden" name="blog_id" value="{{$blog_info->blog_id}}">
                     </div>
                 </div>
                 <div class="control-group">
