@@ -31,6 +31,7 @@ class SuperAdminController extends Controller {
     }
 
     public function save_category(Request $request) {
+        $this->checkLogin();
         $data = array();
         $data['category_name'] = $request->category_name;
         $data['category_description'] = $request->category_description;
@@ -42,6 +43,7 @@ class SuperAdminController extends Controller {
     }
 
     public function manage_category() {
+        $this->checkLogin();
         $all_category = DB::table('tbl_category')
                 ->select('*')
                 ->get();
@@ -52,6 +54,7 @@ class SuperAdminController extends Controller {
     }
 
     public function edit_category($category_id) {
+        $this->checkLogin();
         $category_info_by_id = DB::table('tbl_category')
                 ->where('category_id', $category_id)
                 ->first();
@@ -62,6 +65,7 @@ class SuperAdminController extends Controller {
     }
 
     public function update_category(Request $request) {
+        $this->checkLogin();
         $data = array();
         $category_id = $request->category_id;
         $data['category_name'] = $request->category_name;
@@ -73,6 +77,7 @@ class SuperAdminController extends Controller {
     }
 
     public function delete_category($category_id) {
+        $this->checkLogin();
         DB::table('tbl_category')
                 ->where('category_id', $category_id)
                 ->delete();
@@ -80,6 +85,7 @@ class SuperAdminController extends Controller {
     }
 
     public function unpublish_category($category_id) {
+        $this->checkLogin();
         $data = array();
         $data['publication_status'] = 0;
 
@@ -90,6 +96,7 @@ class SuperAdminController extends Controller {
     }
 
     public function publish_category($category_id) {
+        $this->checkLogin();
         $data = array();
         $data['publication_status'] = 1;
 
@@ -111,6 +118,7 @@ class SuperAdminController extends Controller {
     }
 
     public function save_blog(Request $request) {
+        $this->checkLogin();
         $data = array();
         $data['blog_title'] = $request->blog_title;
         $data['author_name'] = $request->author_name;
@@ -149,16 +157,32 @@ class SuperAdminController extends Controller {
     }
 
     public function manage_blog() {
+        $this->checkLogin();
         $blog_info = DB::table('tbl_blog')
                 ->select('*')
                 ->get();
+//        foreach ($blog_info as $v_blog) {
+//            $c_id = $v_blog->category_id;
+//
+//            $category_info = DB::table('tbl_category')
+//                    ->select('*')
+//                    ->where('category_id', $c_id)
+//                    ->value('category_name');
+//        }
+
+//        $category_info = DB::table('tbl_category')
+//                ->join('tbl_blog', 'tbl_category.category_id', '=', 'tbl_blog.category_id')
+//                ->select('tbl_category.category_name')
+//                ->get();
         $manage_blog = view('admin.pages.manage_blog')
                 ->with('blog_info', $blog_info);
+//                ->with('category_info', $category_info);
         return view('admin.admin_master')
                         ->with('admin_main_content', $manage_blog);
     }
 
     public function publish_blog($blog_id) {
+        $this->checkLogin();
         $data = array();
         $data['publication_status'] = 1;
 
@@ -169,6 +193,7 @@ class SuperAdminController extends Controller {
     }
 
     public function unpublish_blog($blog_id) {
+        $this->checkLogin();
         $data = array();
         $data['publication_status'] = 0;
 
@@ -179,6 +204,7 @@ class SuperAdminController extends Controller {
     }
 
     public function delete_blog($blog_id) {
+        $this->checkLogin();
         DB::table('tbl_blog')
                 ->where('blog_id', $blog_id)
                 ->delete();
@@ -186,6 +212,7 @@ class SuperAdminController extends Controller {
     }
 
     public function edit_blog($blog_id) {
+        $this->checkLogin();
         $blog_info = DB::table('tbl_blog')
                 ->where('blog_id', $blog_id)
                 ->first();
@@ -202,6 +229,7 @@ class SuperAdminController extends Controller {
     }
 
     public function update_blog(Request $request) {
+        $this->checkLogin();
         $data = array();
         $data['blog_title'] = $request->blog_title;
         $blog_id = $request->blog_id;
