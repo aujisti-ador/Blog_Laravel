@@ -36,16 +36,26 @@ class indexController extends Controller {
         $blog_info = DB::table('tbl_blog')
                 ->where('blog_id', $blog_id)
                 ->first();
+        $data = array();
+        $data['hit_counter'] = $blog_info->hit_counter + 1;
+
+        DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->update($data);
+
+        $blog_new_info = DB::table('tbl_blog')
+                ->where('blog_id', $blog_id)
+                ->first();
 
         $blog_details = view('pages.blog_details')
-                ->with('blog_info', $blog_info);
+                ->with('blog_info', $blog_new_info);
         return view('index')->with('main_content', $blog_details)
                         ->with('sidebar', $sidebar)
                         ->with('banner_link', $banner_link);
     }
-    
-    public function blog_post_by_category($category_id){
-        
+
+    public function blog_post_by_category($category_id) {
+
         $all_published_blog_by_category = DB::table('tbl_blog')
                 ->where('publication_status', 1)
                 ->where('category_id', $category_id)

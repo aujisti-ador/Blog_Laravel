@@ -22,6 +22,7 @@ class CreateBlogTable extends Migration
             $table->text('blog_long_description');
             $table->string('blog_image');
             $table->tinyInteger('publication_status');
+            $table->integer('hit_counter');
             $table->timestamps();
         });
     }
