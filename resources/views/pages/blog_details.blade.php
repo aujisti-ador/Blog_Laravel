@@ -6,8 +6,9 @@
         </div>
         <div class="content-grid-single">
             <h3>{{$blog_info->blog_title}}</h3>
-            <h4>{{$blog_info->created_at}}<h4><span>Posted by: <a href="#">{{$blog_info->author_name}}</a></span></h4><span><h5 style="color: red">Total Hit: ({{$blog_info->hit_counter}})</h5></span></h4>
-            
+            <h4>{{$blog_info->created_at}}<h4><span>Posted by: <a href="#">{{$blog_info->author_name}}</a></span></h4><span>
+                    <h5 style="color: red">Total Hit: ({{$blog_info->hit_counter}})</h5></span></h4>
+
             <div class="clearfix"></div>
             <br>
             <img class="single-pic" src="{{asset($blog_info->blog_image)}}" alt=""/>
