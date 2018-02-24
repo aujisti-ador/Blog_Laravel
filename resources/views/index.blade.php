@@ -133,6 +133,18 @@ jQuery(document).ready(function ($) {
                                     <li class="active"><a href="{{URL::to('/blog_details/'.$v_blog->blog_id)}}">{{$v_blog->blog_title}}</a></li>
                                 <?php } ?>
                             </div>
+                            <div class="archives">
+                                <h3>Popular Blog</h3>
+                                <?php
+                                $popular_blog = DB::table('tbl_blog')
+                                        ->orderby('hit_counter', 'desc')
+                                        ->take(10)
+                                        ->get();
+                                foreach ($popular_blog as $p_blog) {
+                                    ?>
+                                    <li class="active"><a href="{{URL::to('/blog_details/'.$p_blog->blog_id)}}">{{$p_blog->blog_title}} &nbsp; Hit Counter ({{$p_blog->hit_counter}})</a></li>
+                                <?php } ?>
+                            </div>
                         </div>
                     <?php } ?>
                     <div class="clearfix"></div>
