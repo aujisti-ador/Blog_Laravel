@@ -59,6 +59,7 @@
                         <td><img src="{{asset($v_blog->blog_image)}}" alt="img" height="50" width="100">
                         </td>
 
+                        <!--category view from here-->
                         <?php
                         $c_id = $v_blog->category_id;
                         $category_info = DB::table('tbl_category')
