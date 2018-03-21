@@ -51,3 +51,7 @@ Route::post('/update_blog', 'SuperAdminController@update_blog');
 Route::get('/unpublish_blog/{id}', 'SuperAdminController@unpublish_blog');
 Route::get('/publish_blog/{id}', 'SuperAdminController@publish_blog');
 Route::get('/delete_blog/{id}', 'SuperAdminController@delete_blog');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

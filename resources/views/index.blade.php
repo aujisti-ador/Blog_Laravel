@@ -9,8 +9,8 @@ developed by Ador
 <html>
     <head>
         <title>Blogname a Blogging Category Flat Bootstarp  Responsive Web Template | Home :: w3layouts</title>
-        <link href="{{asset('public/front_end_asset/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
-        <link href="{{asset('public/front_end_asset/css/style.css')}}" rel='stylesheet' type='text/css' />
+        <link href="{{asset('front_end_asset/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+        <link href="{{asset('front_end_asset/css/style.css')}}" rel='stylesheet' type='text/css' />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Blogname Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -44,7 +44,7 @@ jQuery(document).ready(function ($) {
             <div class="header">  
                 <div class="container">
                     <div class="logo">
-                        <a href="{{URL::to ('/')}}"> <img src="{{asset('public/front_end_asset/images/logo.png')}}" title="soup" /></a>
+                        <a href="{{URL::to ('/')}}"> <img src="{{asset('front_end_asset/images/logo.png')}}" title="soup" /></a>
                     </div>
                     <!---start-top-nav---->
                     <div class="top-menu">

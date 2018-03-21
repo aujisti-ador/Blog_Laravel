@@ -26,7 +26,7 @@
             <div class="comments">
                 <h3>Comment</h3>
                 <div class="comment-grid">
-                    <img src="{{asset('public/front_end_asset/images/pic.png')}}" alt=""/>
+                    <img src="{{asset('front_end_asset/images/pic.png')}}" alt=""/>
                     <div class="comment-info">
                         <h4>MARK JOHNSON</h4>
                         <p>Vivamus congue turpis in laoreet sem nec ultrices. Fusce blandit nunc vehicula massa vehicula tincidunt. Nam venenatis cursus urna sed gravida. Ut tincidunt elit ut quam malesuada consequat. Sed semper.</p>
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="comment-grid">
-                    <img src="{{asset('public/front_end_asset/images/pic.png')}}" alt=""/>
+                    <img src="{{asset('front_end_asset/images/pic.png')}}" alt=""/>
                     <div class="comment-info">
                         <h4>MARK JOHNSON</h4>
                         <p>Vivamus congue turpis in laoreet sem nec ultrices. Fusce blandit nunc vehicula massa vehicula tincidunt. Nam venenatis cursus urna sed gravida. Ut tincidunt elit ut quam malesuada consequat. Sed semper.</p>
